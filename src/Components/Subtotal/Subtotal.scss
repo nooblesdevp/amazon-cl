@@ -1,0 +1,35 @@
+$bgColorBtn: #f0c14b;
+$colorBorder1: #a88734;
+$colorBorder2: #9c7e31;
+$colorBorder3: #846a29;
+
+.subtotal {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 300px;
+    height: 100px;
+    padding: 20px;
+    background: #f3f3f3;
+    border-radius: 3px;
+    border:  1px solid #dddddd;
+    .subtotal__gift {
+         display: flex;
+         text-align: center;
+         input{
+             margin-right: 10px;
+         }
+    }
+    button {
+    background: $bgColorBtn;
+    padding: 7px 20px;
+    border: 1px solid;
+    border-color: $colorBorder1 $colorBorder2 $colorBorder3 ;
+    transition: .4s all ease;
+    color: #000;
+    cursor: pointer;
+    &:hover{
+        background: rgb(231, 159, 25);
+    }
+    }
+}

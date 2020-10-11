@@ -1,0 +1,78 @@
+.login {
+    background: white;
+    margin-top: -50px;
+    height: 100vh;
+}
+.login__logo{
+    width: 150px;
+    object-fit: contain;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.login__container {
+    height: auto;
+    max-width: 400px;
+    margin: 50px auto;
+    text-align: center;
+    padding: 30px;
+    border-radius: 5px;
+    
+    .login__form {
+       // background: blue;
+        padding: 30px;
+        max-width: 350px;
+        height: auto;
+        margin: 20px auto;
+        text-align: initial;
+        display: flex;
+        flex-direction: column;
+        border: 1px solid rgba(128, 128, 128, 0.514);
+        border-radius: 5px;
+        .login__heading{
+            font-size: 2rem;
+        }
+        .login__label{
+          margin-top: 10px;
+          margin-bottom: 5px;
+        }
+        .login__input[type=text], [type=password]{
+            padding: 5px ;
+            outline: none;
+            border: 1px solid rgba(128, 128, 128, 0.479);
+            &:focus {
+                border: 3px solid rgba(255, 166, 0, 0.534) ;
+            }
+        }
+       
+        .login__condition{
+            padding: 20px 0;
+        }
+        .login__btnSignIn{
+            margin-top: 25px;
+            background: rgba(255, 153, 0, 0.932);
+            &:hover{
+                background:  rgb(255, 145, 0);
+            }
+        }
+        .login__btnNewAccount{
+            background: rgb(211, 210, 210);
+            &:hover{
+                background:rgb(192, 189, 189);
+            }
+        }
+        button {
+            padding: 7px;
+            cursor: pointer;
+            transition: .4s all ease;
+            border: 1px solid grey;
+            font-weight: 500;
+           
+        }
+
+        input, label, button {
+            font-size: 1rem;
+            border-radius: 2px;
+        }
+    }
+}
