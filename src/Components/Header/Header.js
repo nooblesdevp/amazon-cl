@@ -1,17 +1,23 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { useStateValue } from '../StateProvider/StateProvider'
+import { auth } from '../firebase/firebase'
 
 //material icons
 import SearchIcon from '@material-ui/icons/Search';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 
-import { useStateValue } from '../StateProvider/StateProvider'
 import './Header.scss'
 
 function Header() {
 
-    const [{ basket }] = useStateValue();
-    console.log('yoooooooo', basket)
+    const [{ basket, user }, dispatch] = useStateValue();
+
+    const handleAuthenticaton = () => {
+      if (user) {
+        auth.signOut();
+      }
+    }
 
     return (
         <nav className="header">
@@ -30,13 +36,13 @@ function Header() {
             </div>
             {/*  3 links */}
             <div className="header__nav">
-                <Link to="/login" className="header__link">
-                <div className="header__option">
-                    <span className="header__optionLineOne" >Hallo Zen</span>
-                    <span className="header__optionLineTwo">Sign In</span>
-                </div>
+                <Link to={!user && "/login" } className="header__link">
+                    <div onClick={handleAuthenticaton} className="header__option">
+                    <span className="header__optionLineOne">Hello {!user ? 'Guest' : user.email}</span>
+                    <span className="header__optionLineTwo">{user ? 'Sign Out' : 'Sign In'}</span>
+                    </div>
                 </Link>
-                <Link to="/" className="header__link">
+                <Link to="/orders" className="header__link">
                     <div className="header__option">
                         <span className="header__optionLineOne" >Returns</span>
                         <span className="header__optionLineTwo">& Orders</span>

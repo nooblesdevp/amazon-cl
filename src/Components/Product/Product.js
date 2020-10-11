@@ -6,7 +6,7 @@ import './Product.scss'
 
 
 function Product({ id, title, image, price, rating }) {
-    const [ {}, dispatch ] = useStateValue()
+    const [ {basket }, dispatch ] = useStateValue()
     
     const addToBasket = () => {
         // add item to basket
@@ -34,7 +34,7 @@ function Product({ id, title, image, price, rating }) {
                     {
                         Array(rating)
                         .fill()
-                        .map((_) => (
+                        .map((_, i) => (
                             <p><StarIcon className="product__ratingIcon"/></p>
                         ))
                     }
