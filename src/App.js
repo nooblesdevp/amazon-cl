@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
 
 //components
 import Header from "./Components/Header/Header";
@@ -9,11 +11,8 @@ import Login from "./Components/Login/Login";
 import Orders from "./Components/Orders/Orders";
 import { useStateValue } from "./Components/StateProvider/StateProvider";
 import { auth } from "./Components/firebase/firebase";
-
-import "./App.scss";
 import Payment from "./Components/Payment/Payment";
-import { loadStripe } from "@stripe/stripe-js";
-import { Elements } from "@stripe/react-stripe-js";
+import "./App.scss";
 
 function App() {
   const [{}, dispatch] = useStateValue();

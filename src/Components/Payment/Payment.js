@@ -9,6 +9,7 @@ import { useStateValue } from "../StateProvider/StateProvider";
 import CurrencyFormat from "react-currency-format";
 import { getBasketTotal } from "../reducer/reducer";
 import axios from "../axios/axios";
+import { db } from "../firebase/firebase";
 
 function Payment() {
   const [{ basket, user }, dispatch] = useStateValue();
@@ -20,21 +21,23 @@ function Payment() {
   const [processing, setProcessing] = useState("");
   const [error, setError] = useState(null);
   const [disabled, setDisabled] = useState(true);
-  const [clientSecret, setClientsSecret] = useState(true);
+  const [clientSecret, setClientSecret] = useState(true);
 
   useEffect(() => {
-    // generate the special stripe secret which allows us to charge
+    // generate the special stripe secret which allows us to charge a customer
     const getClientSecret = async () => {
       const response = await axios({
         method: "post",
         // stripe expects the total in a currencies submits
         url: `/payments/create?total=${getBasketTotal(basket) * 100}`,
       });
-      setClientsSecret(response.data.clientSecret);
+      setClientSecret(response.data.clientSecret);
     };
     getClientSecret();
   }, [basket]);
 
+  console.log(" this is secret bro >>>", clientSecret);
+  console.log("👱", user);
   // handleSubmit
   const handleSubmit = async (e) => {
     //do all the fancy stripe stuff
@@ -49,11 +52,25 @@ function Payment() {
       })
       .then(({ paymentIntent }) => {
         //paymentIntent = payment confirmation
+        db.collection("users")
+          .doc(user?.uid)
+          .collection("orders")
+          .doc(paymentIntent.id)
+          .set({
+            basket: basket,
+            amount: paymentIntent.amount,
+            created: paymentIntent.created,
+          });
+
         setSucceeded(true);
         setError(null);
         setProcessing(false);
 
-        history.replaceState("/orders");
+        dispatch({
+          type: "EMPTY_BASKET",
+        });
+
+        history.replace("/orders");
       });
   };
 
