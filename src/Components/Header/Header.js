@@ -19,7 +19,7 @@ function Header() {
   };
 
   return (
-    <nav className="header">
+    <nav className="header" id="header">
       {/* logo in the left */}
       <Link to="/">
         <img

@@ -5,10 +5,19 @@
   background: #131921;
   .footer__btnToTop {
     height: 50px;
+    width: 100vw;
     background: #485769;
     color: white;
     cursor: pointer;
     transition: 0.3s all ease;
+    border: none;
+    outline: none;
+
+    a {
+      color: white;
+      font-size: 15px;
+      text-decoration: none;
+    }
     &:hover {
       background: lighten(#485769, 5%);
     }
@@ -31,6 +40,7 @@
         list-style: none;
         margin: 10px 0;
         color: rgba(255, 255, 255, 0.795);
+        cursor: pointer;
         &:hover {
           color: white;
         }

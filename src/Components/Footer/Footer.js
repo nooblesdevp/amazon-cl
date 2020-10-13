@@ -7,7 +7,9 @@ function Footer() {
   return (
     <div className="footer">
       <div className="footer__container">
-        <button className="footer__btnToTop">Back to top</button>
+        <button className="footer__btnToTop">
+          <a href="#header"> Back to top</a>
+        </button>
         <div className="footer__links">
           <div className="footer__link">
             <h3>Get to Know Us</h3>
